@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <!--EmailMessageSender Bean 생성-->
+    <bean id="emailMessageSender" class="com.nhnacademy.edu.springframework.messagesender.EmailMessageSender"
+    scope="singleton" destroy-method="destroy">
+    </bean>
+
+    <!--SmsMessageSender Bean 생성-->
+    <bean id="smsMessageSender" class="com.nhnacademy.edu.springframework.messagesender.SmsMessageSender"
+    scope="singleton" init-method="init">
+    </bean>
+
+    <!--생성자를 통한 의존성 주입(Constructor Injection)-->
+<!--    <bean id="messageSendService" class="com.nhnacademy.edu.springframework.messagesender.MessageSendService">-->
+<!--        <constructor-arg ref="SmsMessageSender"></constructor-arg>-->
+<!--    </bean>-->
+
+    <!--setter 메서드를 통한 의존성 주입(Setter Injection)-->
+<!--    <bean id="messageSendService" class="com.nhnacademy.edu.springframework.messagesender.MessageSendService">-->
+<!--        <property name="messageSender" ref="SmsMessageSender"></property>-->
+<!--    </bean>-->
+
+    <!--byType을 통한 Autowired(같은 타입의 Bean이 하나만 존재해야 하므로 Bean둘 중 하나는 주석처리해줘야 한다.-->
+<!--    <bean id="messageSendService" class="com.nhnacademy.edu.springframework.messagesender.MessageSendService"-->
+<!--    autowire="byType">-->
+<!--    </bean>-->
+
+    <!--byName을 통한 Autowired(setter메서드의 이름이 같으므로 setter의 메서드 이름을 Bean에 맞게 맞춰줘야한다.-->
+    <bean id="messageSendService" class="com.nhnacademy.edu.springframework.messagesender.MessageSendService"
+          autowire="byName">
+    </bean>
+
+</beans>
